@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>I'm Sorry</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .container {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      position: relative;
+      z-index: 2;
+      max-width: 90%;
+    }
+
+    h1 {
+      color: #e53935;
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #555;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #e53935;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin-top: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #c62828;
+    }
+
+    #heartAnimation {
+      margin-top: 20px;
+      font-size: 60px;
+      color: #e53935;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .flower {
+      position: absolute;
+      font-size: 30px;
+      color: #ff69b4;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    /* Falling Flowers */
+    .falling-flower {
+      position: absolute;
+      font-size: 24px;
+      color: #ff69b4;
+      animation: fall linear infinite;
+      top: -10%;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10%) rotate(0deg); }
+      100% { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    @keyframes heartBeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.3); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+
+    /* Pink Heart Door */
+    .heart-door {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 150px;
+      color: #ff69b4;
+      cursor: pointer;
+      z-index: 3;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .heart-door.open {
+      animation: openHeart 1s forwards;
+    }
+
+    @keyframes openHeart {
+      0% { transform: translate(-50%, -50%) scale(1); }
+      100% { transform: translate(-50%, -50%) scale(2) rotateY(180deg); opacity: 0; }
+    }
+
+    /* Flower positions */
+    .flower1 { top: 10%; left: 5%; animation-delay: 0s; }
+    .flower2 { top: 20%; right: 10%; animation-delay: 2s; }
+    .flower3 { bottom: 15%; left: 15%; animation-delay: 4s; }
+    .flower4 { bottom: 5%; right: 20%; animation-delay: 6s; }
+  </style>
+</head>
+<body>
+  <!-- Falling Flowers -->
+  <div class="falling-flower" style="left: 5%; animation-duration: 8s;">🌸</div>
+  <div class="falling-flower" style="left: 15%; animation-duration: 10s;">🌺</div>
+  <div class="falling-flower" style="left: 25%; animation-duration: 12s;">🌼</div>
+  <div class="falling-flower" style="left: 35%; animation-duration: 9s;">🌷</div>
+  <div class="falling-flower" style="left: 45%; animation-duration: 7s;">🌸</div>
+  <div class="falling-flower" style="left: 55%; animation-duration: 11s;">🌺</div>
+  <div class="falling-flower" style="left: 65%; animation-duration: 8s;">🌼</div>
+  <div class="falling-flower" style="left: 75%; animation-duration: 10s;">🌷</div>
+  <div class="falling-flower" style="left: 85%; animation-duration: 9s;">🌸</div>
+  <div class="falling-flower" style="left: 95%; animation-duration: 12s;">🌺</div>
+
+  <!-- Pink Heart Door -->
+  <div class="heart-door" id="heartDoor">❤️</div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>I'm Sorry, Shifa</h1>
+    <p>I know I messed up yesterday and I've been regretting it since then. I know I've hurt your feelings but you know I've put my whole trust on you. Please forgive me this time. I know mai har baar galti karta but agar tum saath do toh mai nahi karunga.</p>
+    <button id="heartButton">Click Here</button>
+    <div id="heartAnimation"></div>
+  </div>
+
+  <script>
+    // Heart Button Animation
+    document.getElementById('heartButton').addEventListener('click', function() {
+      const heartAnimation = document.getElementById('heartAnimation');
+      heartAnimation.innerHTML = '❤️';
+      heartAnimation.style.animation = 'heartBeat 1s ease-in-out';
+
+      setTimeout(() => {
+        heartAnimation.innerHTML = 'I Love You!';
+        heartAnimation.style.animation = '';
+      }, 1000);
+    });
+
+    // Heart Door Animation
+    const heartDoor = document.getElementById('heartDoor');
+    heartDoor.addEventListener('click', () => {
+      heartDoor.classList.add('open');
+      setTimeout(() => {
+        heartDoor.style.display = 'none';
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
